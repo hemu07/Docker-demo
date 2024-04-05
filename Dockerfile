@@ -1,17 +1,18 @@
-FROM node:19-alpine
+FROM node
 
-# Copy package.json, wildcard used so both package.json AND package-lock.json are copied
-# slash '/' at the end of app is important, so it created an app directory, otherwise you'll get an error
-COPY package.json /usr/app/
+ENV MONGO_DB_USERNAME=admin
+ENV MONGO_DB_PWD=secret
 
-# Copy app files from src directory
-COPY src /usr/app/
+RUN mkdir -p /home/node-app
 
-# Create app directory & set default dir so that next commands executes in /usr/app dir, liked cd-ing into /usr/app to execute npm install
-WORKDIR /usr/app
+#copy source destination , remove ./app if you are in the same folder where docker file exists
+COPY app /home/node-app
 
-# Install app dependencies
+# set default dir so that next commands executes in /home/app dir
+WORKDIR /home/node-app
+
+# will execute npm install in /home/node-app because of WORKDIR
 RUN npm install
 
-# Start the application
+
 CMD ["node", "server.js"]

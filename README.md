@@ -4,4 +4,5 @@
   1. run the app with Mongodb and Mongo-Express containers
   2. running the app with docker-compose file to start mongodb and mongo-express containers from one yaml file
   3. build the app image locally, pushing it to Amazon ECR and running the app on server by pulling the app image from this private repo and mongodb & mongo-express images from docker hub
+- a minimal 3 tier app built using react frontend, two APIs implementation (nodejs, go lang), postgres SQl as DB
 
